@@ -45,37 +45,37 @@
       "id": 1,
       "name": "Sunday School",
       "description": "Comprehensive educational programs for children and youth to learn about the Orthodox faith through engaging lessons and activities.",
-      "image": "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     },
     {
       "id": 2,
       "name": "Youth Ministry",
       "description": "Engaging activities, retreats, and spiritual guidance for teens and young adults to grow in faith together.",
-      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     },
     {
       "id": 3,
       "name": "Women's Fellowship",
       "description": "A warm community for women of all ages to connect, support one another, and grow spiritually through prayer and service.",
-      "image": "https://images.unsplash.com/photo-1526716346050-84ee5748bfc7?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/3769021/pexels-photo-3769021.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     },
     {
       "id": 4,
       "name": "Men's Group",
       "description": "Brotherhood, accountability, and spiritual development for men through regular gatherings, service projects, and retreats.",
-      "image": "https://images.unsplash.com/photo-1609234656388-0ff363383899?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/3376799/pexels-photo-3376799.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     },
     {
       "id": 5,
       "name": "Choir & Music Ministry",
       "description": "Leading the congregation in sacred worship through traditional Coptic chanting, hymns, and liturgical music.",
-      "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/811838/pexels-photo-811838.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     },
     {
       "id": 6,
       "name": "Community Outreach",
       "description": "Serving those in need within our local community through food drives, volunteer work, and charitable initiatives.",
-      "image": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=600&h=400&fit=crop&auto=format"
+      "image": "https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop"
     }
   ],
   "schedule": {
@@ -123,7 +123,7 @@
       "date": "2026-06-20",
       "time": "9:00 AM",
       "description": "Join us for a special Liturgy and festive gathering celebrating the feast of Pentecost with the whole community.",
-      "image": "https://images.unsplash.com/photo-1548625149-720754f6b14b?w=800&h=500&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/2916450/pexels-photo-2916450.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
       "location": "Main Church & Hall"
     },
     {
@@ -132,7 +132,7 @@
       "date": "2026-07-12",
       "time": "12:00 PM",
       "description": "A beloved annual tradition — bring the whole family for food, fellowship, and fun in the church courtyard.",
-      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=500&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
       "location": "Church Courtyard"
     },
     {
@@ -141,7 +141,7 @@
       "date": "2026-08-08",
       "time": "6:00 PM",
       "description": "Supporting families in need through our annual charity dinner. Tickets available at the church office.",
-      "image": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=500&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
       "location": "Church Banquet Hall"
     },
     {
@@ -150,7 +150,7 @@
       "date": "2026-08-22",
       "time": "8:00 AM",
       "description": "Three days of spiritual renewal, team-building, and fun for all youth aged 13-25. Registration required.",
-      "image": "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&h=500&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/3225529/pexels-photo-3225529.jpeg?auto=compress&cs=tinysrgb&w=800&h=500&fit=crop",
       "location": "Camp Cedar Ridge"
     }
   ],
@@ -158,49 +158,49 @@
     {
       "id": 1,
       "title": "Church Sanctuary",
-      "image": "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/2218536/pexels-photo-2218536.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Church"
     },
     {
       "id": 2,
       "title": "Sunday Divine Liturgy",
-      "image": "https://images.unsplash.com/photo-1574393653878-e6ad9c5c0da4?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/3473569/pexels-photo-3473569.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Services"
     },
     {
       "id": 3,
       "title": "Youth Group Fellowship",
-      "image": "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1416736/pexels-photo-1416736.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Ministry"
     },
     {
       "id": 4,
       "title": "Community Gathering",
-      "image": "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1181406/pexels-photo-1181406.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Events"
     },
     {
       "id": 5,
       "title": "Palm Sunday Procession",
-      "image": "https://images.unsplash.com/photo-1541480601022-2308c0f02487?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1414467/pexels-photo-1414467.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Services"
     },
     {
       "id": 6,
       "title": "Christmas Eve Candlelight",
-      "image": "https://images.unsplash.com/photo-1512389142860-9c449e58a543?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/278237/pexels-photo-278237.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Events"
     },
     {
       "id": 7,
       "title": "Choir Performance",
-      "image": "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/811838/pexels-photo-811838.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Ministry"
     },
     {
       "id": 8,
       "title": "Sunday School Class",
-      "image": "https://images.unsplash.com/photo-1503676382389-4809596d5290?w=800&h=600&fit=crop&auto=format",
+      "image": "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&fit=crop",
       "category": "Ministry"
     }
   ]
