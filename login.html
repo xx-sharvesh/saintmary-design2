@@ -185,14 +185,10 @@
             <button type="submit" class="btn btn-gold" id="signupBtn">Create Account →</button>
           </form>
         </div>
-        <!-- Success state shown after sign up -->
         <div class="success-state" id="signupSuccess" style="display:none">
           <div class="success-icon">✅</div>
-          <h3>Account Created!</h3>
-          <p>Your account is <strong>pending approval</strong>. Download the updated users file below and send it to the church administrator to activate your account.</p>
-          <button class="download-btn" onclick="downloadUsersFile()">📥 Download Users File</button>
-          <br>
-          <span class="back-link" onclick="switchTab('signin')">← Back to Sign In</span>
+          <h3>Welcome to Saint Mary!</h3>
+          <p>Your account has been created. Taking you to the website...</p>
         </div>
       </div>
 
@@ -206,9 +202,7 @@
 <script src="js/auth.js"></script>
 <script>
   let usersData = { users: [], settings: {} };
-  let newUserPayload = null;
 
-  // Redirect if already logged in
   const existing = getCurrentUser();
   if (existing) {
     window.location.href = existing.role === 'admin' ? 'admin.html' : 'index.html';
@@ -261,10 +255,6 @@
       showAlert('signinAlert', 'Incorrect email or password. Please try again.');
       return;
     }
-    if (user.status === 'pending') {
-      showAlert('signinAlert', 'Your account is pending approval by the administrator. Please check back later.', 'info');
-      return;
-    }
     if (user.status !== 'active') {
       showAlert('signinAlert', 'Your account has been deactivated. Please contact the church office.');
       return;
@@ -302,25 +292,16 @@
     const newUser = {
       id: Date.now(),
       name, email, password: pass,
-      role: 'member', status: 'pending',
+      role: 'member', status: 'active',
       createdAt: new Date().toISOString().split('T')[0]
     };
 
     usersData.users.push(newUser);
-    newUserPayload = JSON.parse(JSON.stringify(usersData)); // deep copy for download
+    setCurrentUser(newUser);
 
-    btn.textContent = 'Create Account →'; btn.disabled = false;
     document.getElementById('signupFields').style.display = 'none';
     document.getElementById('signupSuccess').style.display = 'block';
-  }
-
-  function downloadUsersFile() {
-    if (!newUserPayload) return;
-    const blob = new Blob([JSON.stringify(newUserPayload, null, 2)], { type: 'application/json' });
-    const url  = URL.createObjectURL(blob);
-    const a    = document.createElement('a');
-    a.href = url; a.download = 'users.json'; a.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => { window.location.href = 'index.html'; }, 1500);
   }
 </script>
 </body>
