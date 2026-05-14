@@ -68,9 +68,8 @@ function populateAllForms() {
   const live = siteData.live || {};
   setValue('liveTitle',      live.title      || '');
   setValue('liveNextStream', live.nextStream || '');
+  setValue('liveChannelId',  live.channelId  || '');
   setValue('liveYoutubeUrl', live.youtubeId ? 'https://www.youtube.com/watch?v=' + live.youtubeId : '');
-  const liveChk = document.getElementById('liveIsLive');
-  if (liveChk) liveChk.checked = !!live.isLive;
 }
 
 function setValue(id, val) {
@@ -98,12 +97,13 @@ function saveAbout() {
 }
 
 function saveLive() {
-  const ytUrl = document.getElementById('liveYoutubeUrl').value.trim();
-  siteData.live = { ...siteData.live,
+  const ytUrl    = document.getElementById('liveYoutubeUrl').value.trim();
+  const chId     = document.getElementById('liveChannelId').value.trim();
+  siteData.live  = { ...siteData.live,
     title:      document.getElementById('liveTitle').value.trim(),
     nextStream: document.getElementById('liveNextStream').value.trim(),
-    youtubeId:  extractYouTubeId(ytUrl),
-    isLive:     document.getElementById('liveIsLive').checked
+    channelId:  chId,
+    youtubeId:  extractYouTubeId(ytUrl)
   };
   toast('Live stream saved — export Content JSON to apply.');
 }

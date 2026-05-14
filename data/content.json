@@ -7,8 +7,8 @@
   "live": {
     "title": "Sunday Liturgy Live",
     "description": "Join us for live worship every Sunday morning",
+    "channelId": "",
     "youtubeId": "dQw4w9WgXcQ",
-    "isLive": false,
     "nextStream": "Sunday, 10:00 AM"
   },
   "about": {

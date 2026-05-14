@@ -57,16 +57,21 @@ function renderLive() {
   if (!el) return;
   const live = content.live || {};
 
-  // Always embed the player when a YouTube ID is set — YouTube itself shows LIVE
-  // when streaming and the recorded video otherwise. No manual toggle needed.
-  if (live.youtubeId) {
+  // Channel ID embed = fully automatic (YouTube shows live/not-live itself).
+  // Falls back to a specific video URL if no channel ID is set.
+  const embedSrc = live.channelId
+    ? `https://www.youtube.com/embed/live_stream?channel=${esc(live.channelId)}&rel=0`
+    : live.youtubeId
+      ? `https://www.youtube.com/embed/${esc(live.youtubeId)}?rel=0`
+      : null;
+
+  if (embedSrc) {
     el.innerHTML = `
       <div class="live-inner">
         <span class="eyebrow">Live Worship</span>
         <h2>${esc(live.title || 'Sunday Liturgy')}</h2>
         <div class="live-frame">
-          <iframe src="https://www.youtube.com/embed/${esc(live.youtubeId)}?rel=0"
-            allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          <iframe src="${embedSrc}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
         <p class="live-next" style="margin-top:1rem">
           Regular stream: <strong style="color:var(--gold-light)">${esc(live.nextStream || 'Sunday, 10:00 AM')}</strong>
@@ -79,7 +84,7 @@ function renderLive() {
         <span class="eyebrow">Live Worship</span>
         <h2>${esc(live.title || 'Sunday Liturgy')}</h2>
         <p class="live-next">Next Stream: <strong style="color:var(--gold-light)">${esc(live.nextStream || 'Sunday, 10:00 AM')}</strong></p>
-        <p style="color:rgba(255,255,255,0.5); font-size:0.88rem;">No stream link configured yet. Add a YouTube URL in the admin panel.</p>
+        <p style="color:rgba(255,255,255,0.5); font-size:0.88rem;">No stream configured yet. Add a YouTube Channel ID in the admin panel.</p>
       </div>
     `;
   }
