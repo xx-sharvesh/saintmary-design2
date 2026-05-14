@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign In — Saint Mary Coptic Orthodox Church</title>
+  <style>
+    :root {
+      --navy: #05152d; --navy-mid: #0e2c56; --navy-light: #123b73;
+      --gold: #d7b24a; --gold-light: #f2d77b;
+      --cream: #faf8f3; --cream-dark: #f0ece3;
+      --white: #fff; --text: #1a2438; --gray: #6b7489;
+      --border: rgba(215,178,74,0.25); --danger: #c0392b; --success: #1e8449;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body { min-height:100vh; }
+    body { font-family:Georgia,serif; background:var(--cream); color:var(--text); display:flex; flex-direction:column; }
+
+    /* PAGE LAYOUT */
+    .page { flex:1; display:grid; grid-template-columns:1fr 1fr; min-height:100vh; }
+
+    /* LEFT PANEL — branding */
+    .panel-brand {
+      background: var(--navy);
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:4rem 3rem; text-align:center; position:relative; overflow:hidden;
+    }
+    .panel-brand::before {
+      content:'✞'; position:absolute; font-size:28rem;
+      color:rgba(215,178,74,0.04); top:50%; left:50%;
+      transform:translate(-50%,-50%); pointer-events:none; user-select:none;
+    }
+    .brand-cross { font-size:3.5rem; color:var(--gold); margin-bottom:2rem; position:relative; z-index:1; }
+    .brand-name { font-size:clamp(1.2rem,2.5vw,1.8rem); color:var(--white); margin-bottom:0.5rem; position:relative; z-index:1; font-weight:normal; }
+    .brand-tag { font-size:0.7rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-family:'Helvetica Neue',Arial,sans-serif; position:relative; z-index:1; }
+    .brand-quote { margin-top:3rem; padding:1.5rem; border-left:3px solid var(--gold); text-align:left; position:relative; z-index:1; }
+    .brand-quote p { color:rgba(255,255,255,0.6); font-style:italic; font-size:0.95rem; line-height:1.7; }
+    .brand-quote cite { display:block; margin-top:0.5rem; color:var(--gold); font-size:0.78rem; font-style:normal; letter-spacing:1px; font-family:'Helvetica Neue',Arial,sans-serif; }
+
+    /* RIGHT PANEL — form */
+    .panel-form {
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      padding:3rem 2rem; background:var(--cream-dark);
+    }
+    .form-card { width:100%; max-width:420px; }
+    .form-card-header { margin-bottom:2.5rem; }
+    .form-card-header h2 { color:var(--navy); font-size:1.6rem; margin-bottom:0.3rem; font-weight:normal; }
+    .form-card-header p { color:var(--gray); font-size:0.9rem; }
+
+    /* TABS */
+    .tabs { display:flex; border-bottom:2px solid var(--border); margin-bottom:2rem; }
+    .tab {
+      flex:1; padding:0.75rem 1rem; text-align:center; cursor:pointer;
+      font-family:'Helvetica Neue',Arial,sans-serif; font-size:0.8rem;
+      font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--gray); border-bottom:2px solid transparent; margin-bottom:-2px;
+      transition:all 0.2s; background:none; border-top:none; border-left:none; border-right:none;
+    }
+    .tab.active { color:var(--navy); border-bottom-color:var(--gold); }
+
+    /* FORM */
+    .auth-form { display:none; }
+    .auth-form.show { display:block; }
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label {
+      display:block; margin-bottom:0.4rem;
+      font-size:0.72rem; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+      color:var(--navy-mid); font-family:'Helvetica Neue',Arial,sans-serif;
+    }
+    .form-group input {
+      width:100%; padding:0.75rem 1rem;
+      border:1.5px solid var(--border); background:var(--white);
+      font-family:inherit; font-size:0.95rem; color:var(--text);
+      transition:border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus {
+      outline:none; border-color:var(--gold); box-shadow:0 0 0 3px rgba(215,178,74,0.15);
+    }
+
+    /* BUTTONS */
+    .btn { display:block; width:100%; padding:0.85rem; border:none; cursor:pointer; font-family:inherit; font-size:0.88rem; font-weight:700; letter-spacing:0.5px; transition:all 0.2s; margin-top:0.5rem; }
+    .btn-navy { background:var(--navy); color:var(--white); }
+    .btn-navy:hover { background:var(--navy-light); }
+    .btn-gold { background:var(--gold); color:var(--navy); }
+    .btn-gold:hover { background:var(--gold-light); }
+
+    /* ALERTS */
+    .alert { padding:0.85rem 1rem; margin-bottom:1.25rem; font-size:0.88rem; border-left:4px solid; }
+    .alert-error { background:#fdf2f0; color:var(--danger); border-color:var(--danger); }
+    .alert-success { background:#edfbf1; color:var(--success); border-color:var(--success); }
+    .alert-info { background:#f0f4ff; color:var(--navy-mid); border-color:var(--gold); }
+
+    /* SUCCESS STATE */
+    .success-state { text-align:center; }
+    .success-icon { font-size:3rem; margin-bottom:1rem; }
+    .success-state h3 { color:var(--success); margin-bottom:0.5rem; }
+    .success-state p { color:var(--gray); font-size:0.88rem; line-height:1.65; margin-bottom:1.5rem; }
+    .download-btn {
+      display:inline-flex; align-items:center; gap:0.5rem;
+      padding:0.75rem 1.5rem; background:var(--navy); color:var(--gold);
+      font-family:'Helvetica Neue',Arial,sans-serif; font-size:0.82rem;
+      font-weight:700; letter-spacing:1px; text-transform:uppercase;
+      cursor:pointer; border:none; margin-bottom:1rem;
+    }
+    .back-link { color:var(--gold); font-size:0.82rem; cursor:pointer; text-decoration:underline; }
+
+    /* FOOTER LINK */
+    .form-footer { margin-top:2rem; text-align:center; }
+    .form-footer a { color:var(--gold); font-size:0.82rem; text-decoration:none; }
+    .form-footer a:hover { text-decoration:underline; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      .page { grid-template-columns:1fr; }
+      .panel-brand { display:none; }
+      .panel-form { padding:2rem 1.5rem; justify-content:flex-start; padding-top:3rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+  <!-- BRAND PANEL -->
+  <div class="panel-brand">
+    <div class="brand-cross">✞</div>
+    <div class="brand-name">Saint Mary Coptic Orthodox Church</div>
+    <div class="brand-tag">Member & Admin Portal</div>
+    <div class="brand-quote">
+      <p>"I am the way, the truth, and the life. No one comes to the Father except through me."</p>
+      <cite>— John 14:6</cite>
+    </div>
+  </div>
+
+  <!-- FORM PANEL -->
+  <div class="panel-form">
+    <div class="form-card">
+      <div class="form-card-header">
+        <h2 id="formTitle">Welcome Back</h2>
+        <p id="formSubtitle">Sign in to your church account</p>
+      </div>
+
+      <!-- TABS -->
+      <div class="tabs">
+        <button class="tab active" id="tabSignIn" onclick="switchTab('signin')">Sign In</button>
+        <button class="tab" id="tabSignUp" onclick="switchTab('signup')">Sign Up</button>
+      </div>
+
+      <!-- SIGN IN FORM -->
+      <div class="auth-form show" id="signinForm">
+        <div id="signinAlert"></div>
+        <form onsubmit="event.preventDefault(); doSignIn();">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="siEmail" placeholder="your@email.com" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="siPass" placeholder="Enter your password" required autocomplete="current-password">
+          </div>
+          <button type="submit" class="btn btn-navy" id="signinBtn">Sign In →</button>
+        </form>
+      </div>
+
+      <!-- SIGN UP FORM -->
+      <div class="auth-form" id="signupForm">
+        <div id="signupAlert"></div>
+        <div id="signupFields">
+          <form onsubmit="event.preventDefault(); doSignUp();">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="suName" placeholder="Your full name" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="suEmail" placeholder="your@email.com" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="suPass" placeholder="Create a password (min 6 chars)" required minlength="6" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" id="suPass2" placeholder="Repeat your password" required autocomplete="new-password">
+            </div>
+            <button type="submit" class="btn btn-gold" id="signupBtn">Create Account →</button>
+          </form>
+        </div>
+        <!-- Success state shown after sign up -->
+        <div class="success-state" id="signupSuccess" style="display:none">
+          <div class="success-icon">✅</div>
+          <h3>Account Created!</h3>
+          <p>Your account is <strong>pending approval</strong>. Download the updated users file below and send it to the church administrator to activate your account.</p>
+          <button class="download-btn" onclick="downloadUsersFile()">📥 Download Users File</button>
+          <br>
+          <span class="back-link" onclick="switchTab('signin')">← Back to Sign In</span>
+        </div>
+      </div>
+
+      <div class="form-footer">
+        <a href="index.html">← Back to Church Website</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/auth.js"></script>
+<script>
+  let usersData = { users: [], settings: {} };
+  let newUserPayload = null;
+
+  // Redirect if already logged in
+  const existing = getCurrentUser();
+  if (existing) {
+    window.location.href = existing.role === 'admin' ? 'admin.html' : 'index.html';
+  }
+
+  // Load users.json on start
+  (async () => {
+    try {
+      const r = await fetch('./data/users.json?t=' + Date.now());
+      usersData = await r.json();
+    } catch(e) {
+      usersData = { users: [], settings: {} };
+    }
+  })();
+
+  function switchTab(tab) {
+    document.getElementById('signinForm').classList.toggle('show', tab === 'signin');
+    document.getElementById('signupForm').classList.toggle('show', tab === 'signup');
+    document.getElementById('tabSignIn').classList.toggle('active', tab === 'signin');
+    document.getElementById('tabSignUp').classList.toggle('active', tab === 'signup');
+    document.getElementById('formTitle').textContent = tab === 'signin' ? 'Welcome Back' : 'Create Account';
+    document.getElementById('formSubtitle').textContent = tab === 'signin'
+      ? 'Sign in to your church account'
+      : 'Join the Saint Mary community';
+    document.getElementById('signinAlert').innerHTML = '';
+    document.getElementById('signupAlert').innerHTML = '';
+  }
+
+  function showAlert(containerId, msg, type = 'error') {
+    document.getElementById(containerId).innerHTML =
+      `<div class="alert alert-${type}">${msg}</div>`;
+  }
+
+  async function doSignIn() {
+    const email = document.getElementById('siEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('siPass').value;
+    const btn   = document.getElementById('signinBtn');
+    btn.textContent = 'Signing In...'; btn.disabled = true;
+
+    // Small delay for UX
+    await new Promise(r => setTimeout(r, 300));
+
+    const user = usersData.users.find(u =>
+      u.email.toLowerCase() === email && u.password === pass
+    );
+
+    btn.textContent = 'Sign In →'; btn.disabled = false;
+
+    if (!user) {
+      showAlert('signinAlert', 'Incorrect email or password. Please try again.');
+      return;
+    }
+    if (user.status === 'pending') {
+      showAlert('signinAlert', 'Your account is pending approval by the administrator. Please check back later.', 'info');
+      return;
+    }
+    if (user.status !== 'active') {
+      showAlert('signinAlert', 'Your account has been deactivated. Please contact the church office.');
+      return;
+    }
+
+    setCurrentUser(user);
+    window.location.href = user.role === 'admin' ? 'admin.html' : 'index.html';
+  }
+
+  async function doSignUp() {
+    const name  = document.getElementById('suName').value.trim();
+    const email = document.getElementById('suEmail').value.trim().toLowerCase();
+    const pass  = document.getElementById('suPass').value;
+    const pass2 = document.getElementById('suPass2').value;
+    const btn   = document.getElementById('signupBtn');
+
+    if (pass !== pass2) {
+      showAlert('signupAlert', 'Passwords do not match.');
+      return;
+    }
+    if (pass.length < 6) {
+      showAlert('signupAlert', 'Password must be at least 6 characters.');
+      return;
+    }
+
+    const exists = usersData.users.find(u => u.email.toLowerCase() === email);
+    if (exists) {
+      showAlert('signupAlert', 'An account with this email already exists. Try signing in.');
+      return;
+    }
+
+    btn.textContent = 'Creating Account...'; btn.disabled = true;
+    await new Promise(r => setTimeout(r, 400));
+
+    const newUser = {
+      id: Date.now(),
+      name, email, password: pass,
+      role: 'member', status: 'pending',
+      createdAt: new Date().toISOString().split('T')[0]
+    };
+
+    usersData.users.push(newUser);
+    newUserPayload = JSON.parse(JSON.stringify(usersData)); // deep copy for download
+
+    btn.textContent = 'Create Account →'; btn.disabled = false;
+    document.getElementById('signupFields').style.display = 'none';
+    document.getElementById('signupSuccess').style.display = 'block';
+  }
+
+  function downloadUsersFile() {
+    if (!newUserPayload) return;
+    const blob = new Blob([JSON.stringify(newUserPayload, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url; a.download = 'users.json'; a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+</body>
+</html>

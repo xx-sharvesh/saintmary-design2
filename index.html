@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saint Mary Coptic Orthodox Church</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <div class="topbar-brand" id="topbar"></div>
+
+  <!-- ── STICKY NAV ── -->
+  <header class="site-nav" id="siteNav">
+    <div class="nav-inner">
+      <button class="hamburger" id="hamburger" aria-label="Menu">&#9776;</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#clergy">Clergy</a>
+        <a href="#ministries">Ministries</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#sermons">Sermons</a>
+        <a href="#events">Events</a>
+        <a href="#gallery">Gallery</a>
+        <a href="login.html" class="nav-admin" id="navAuthLink">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ── HERO: SPLIT PANEL ── -->
+  <section class="hero-split" id="home">
+    <div class="hero-left" id="heroLeft">
+      <div class="hero-left-content">
+        <div class="hero-eyebrow">Coptic Orthodox</div>
+        <h1 class="hero-name" id="heroName">Saint Mary</h1>
+        <p class="hero-tagline" id="heroTagline">Living the Orthodox Faith</p>
+        <div class="hero-cta">
+          <a href="#about" class="cta-btn cta-primary">Discover Our Parish</a>
+          <a href="#live" class="cta-btn cta-outline">Live Stream</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right" id="heroRight">
+      <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=900&h=700&fit=crop&auto=format" alt="Church" class="hero-img">
+      <div class="hero-img-overlay"></div>
+    </div>
+  </section>
+
+  <!-- ── LIVE STREAM SECTION ── -->
+  <section class="live-section" id="live"></section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section-about" id="about"></section>
+
+  <!-- ── CLERGY ── -->
+  <section class="section-clergy" id="clergy"></section>
+
+  <!-- ── MINISTRIES ── -->
+  <section class="section-ministries" id="ministries"></section>
+
+  <!-- ── SCHEDULE ── -->
+  <section class="section-schedule" id="schedule"></section>
+
+  <!-- ── SERMONS ── -->
+  <section class="section-sermons" id="sermons"></section>
+
+  <!-- ── EVENTS ── -->
+  <section class="section-events" id="events"></section>
+
+  <!-- ── GALLERY ── -->
+  <section class="section-gallery" id="gallery"></section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer" id="siteFooter"></footer>
+
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Update nav auth link based on session
+    (function() {
+      const user = getCurrentUser();
+      const link = document.getElementById('navAuthLink');
+      if (!link) return;
+      if (user && user.role === 'admin') {
+        link.href = 'admin.html';
+        link.textContent = 'Admin';
+      } else if (user) {
+        link.href = 'login.html';
+        link.textContent = 'My Account';
+      }
+    })();
+  </script>
+</body>
+</html>

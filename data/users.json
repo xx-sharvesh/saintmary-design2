@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Church Administrator",
+      "email": "admin@saintmary.org",
+      "password": "admin123",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-01-01"
+    }
+  ],
+  "settings": {
+    "allowRegistration": true,
+    "churchName": "Saint Mary Coptic Orthodox Church"
+  }
+}
